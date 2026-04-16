@@ -32,8 +32,8 @@ Añadir al archivo de configuración MCP:
 {
   "mcpServers": {
     "redmine": {
-      "command": "node",
-      "args": ["/ruta/al/dist/index.js"],
+      "command": "npx",
+      "args": ["-y", "redmine-server-mcp@latest"]
       "env": {
         "REDMINE_URL": "https://redmine.example.com",
         "REDMINE_API_KEY": "tu-api-key"
