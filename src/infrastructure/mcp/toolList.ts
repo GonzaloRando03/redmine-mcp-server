@@ -2031,23 +2031,24 @@ export const toolList = {
     {
       name: "upload_file",
       description:
-        "Uploads a file to Redmine and returns a token. The token can then be used when creating/updating issues, wiki pages, etc. to attach the file.",
+        "Uploads a binary file to Redmine and returns an upload token. IMPORTANT: Redmine requires the request to use Content-Type: application/octet-stream for all file uploads — always set content_type to 'application/octet-stream', regardless of the actual file type. Using any other MIME type (e.g. 'image/png', 'application/pdf') will cause Redmine to reject the upload with HTTP 406. The returned token must be passed in the 'uploads' field when creating or updating issues, wiki pages, etc.",
       inputSchema: {
         type: "object",
         properties: {
           filename: {
             type: "string",
-            description: "Name for the uploaded file",
+            description:
+              "Name for the uploaded file as it will appear in Redmine",
           },
           content_type: {
             type: "string",
             description:
-              "MIME type of the file (e.g. 'application/pdf', 'image/png')",
+              "MUST be 'application/octet-stream'. Redmine rejects uploads with any other Content-Type (HTTP 406). Do not use the actual MIME type of the file here.",
+            default: "application/octet-stream",
           },
           file_path: {
             type: "string",
-            description:
-              "Absolute or relative path to the local file to upload.",
+            description: "Absolute path to the local file to upload.",
           },
         },
         required: ["filename", "content_type", "file_path"],
