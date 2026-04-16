@@ -47,18 +47,10 @@ export class AttachmentController
   }
 
   async uploadFile(params: UploadFileParams): Promise<RedmineUploadResponse> {
-    const { content, file_path, content_type, filename } = params;
+    const { file_path, content_type, filename } = params;
 
-    let buffer: Buffer;
-
-    if (file_path !== undefined) {
-      const resolvedPath = path.resolve(file_path);
-      buffer = fs.readFileSync(resolvedPath);
-    } else if (content !== undefined) {
-      buffer = Buffer.from(content, "base64");
-    } else {
-      throw new Error("Either content (base64) or file_path must be provided");
-    }
+    const resolvedPath = path.resolve(file_path);
+    const buffer = fs.readFileSync(resolvedPath);
 
     return this.requestRaw<RedmineUploadResponse>(
       `/uploads.json?filename=${encodeURIComponent(filename)}`,

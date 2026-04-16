@@ -2031,7 +2031,7 @@ export const toolList = {
     {
       name: "upload_file",
       description:
-        "Uploads a file to Redmine and returns a token. The token can then be used when creating/updating issues, wiki pages, etc. to attach the file. Provide either file_path (recommended for large files) or content (base64-encoded). Exactly one of file_path or content is required.",
+        "Uploads a file to Redmine and returns a token. The token can then be used when creating/updating issues, wiki pages, etc. to attach the file.",
       inputSchema: {
         type: "object",
         properties: {
@@ -2047,15 +2047,10 @@ export const toolList = {
           file_path: {
             type: "string",
             description:
-              "Absolute or relative path to the local file to upload. Recommended for large files to avoid base64 overhead.",
-          },
-          content: {
-            type: "string",
-            description:
-              "Base64-encoded file content. Use only for small files; prefer file_path for large files.",
+              "Absolute or relative path to the local file to upload.",
           },
         },
-        required: ["filename", "content_type"],
+        required: ["filename", "content_type", "file_path"],
       },
     },
     // ── File ────────────────────────────────────────────────────────────────

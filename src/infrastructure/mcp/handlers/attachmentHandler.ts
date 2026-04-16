@@ -25,9 +25,9 @@ export async function handleAttachment(
       );
     case "upload_file": {
       const params = args as unknown as UploadFileParams;
-      if (params.file_path === undefined && params.content === undefined) {
+      if (params.file_path === undefined) {
         throw new Error(
-          "upload_file requires either 'file_path' (path to a local file) or 'content' (base64-encoded string).",
+          "upload_file requires 'file_path' (path to a local file).",
         );
       }
       return c.uploadFile.handle(params);

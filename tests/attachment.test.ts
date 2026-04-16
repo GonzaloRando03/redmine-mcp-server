@@ -22,17 +22,6 @@ describe("Attachment", () => {
     expect(result).toHaveProperty("author");
   });
 
-  it("uploadFile sube un archivo con base64 y devuelve token", async () => {
-    const content = Buffer.from("contenido de prueba").toString("base64");
-    const result = await uploadFile.handle({
-      filename: "test.txt",
-      content_type: "text/plain",
-      content,
-    });
-    expect(result).toHaveProperty("upload");
-    expect(result.upload).toHaveProperty("token");
-  });
-
   it("uploadFile sube un archivo con file_path y devuelve token", async () => {
     const tmpFile = path.join(os.tmpdir(), "redmine-mcp-test.txt");
     fs.writeFileSync(tmpFile, "contenido desde fichero");
