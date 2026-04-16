@@ -1,32 +1,32 @@
 # Redmine MCP Server
 
-MCP (Model Context Protocol) server para Redmine, desarrollado en TypeScript.
+MCP (Model Context Protocol) server for Redmine, built with TypeScript.
 
-## Requisitos
+## Requirements
 
 - Node.js 18+
-- Una instancia de Redmine con API REST habilitada
-- API Key de Redmine
+- A Redmine instance with REST API enabled
+- Redmine API Key
 
-## Instalación
+## Installation
 
 ```bash
 npm install
 npm run build
 ```
 
-## Configuración
+## Configuration
 
-Variables de entorno:
+Environment variables:
 
-| Variable          | Descripción                                             | Requerida |
-| ----------------- | ------------------------------------------------------- | --------- |
-| `REDMINE_URL`     | URL base de Redmine (ej: `https://redmine.example.com`) | Sí        |
-| `REDMINE_API_KEY` | API Key de Redmine                                      | Sí        |
+| Variable          | Description                                           | Required |
+| ----------------- | ----------------------------------------------------- | -------- |
+| `REDMINE_URL`     | Redmine base URL (e.g. `https://redmine.example.com`) | Yes      |
+| `REDMINE_API_KEY` | Redmine API Key                                       | Yes      |
 
-## Uso con VS Code / Claude Desktop
+## Usage with VS Code / Claude Desktop
 
-Añadir al archivo de configuración MCP:
+Add to your MCP configuration file:
 
 ```json
 {
@@ -36,53 +36,53 @@ Añadir al archivo de configuración MCP:
       "args": ["-y", "redmine-server-mcp@latest"]
       "env": {
         "REDMINE_URL": "https://redmine.example.com",
-        "REDMINE_API_KEY": "tu-api-key"
+        "REDMINE_API_KEY": "your-api-key"
       }
     }
   }
 }
 ```
 
-## Herramientas disponibles
+## Available Tools
 
 ### Projects (7)
 
-- `list_projects` — Lista proyectos
-- `get_project` — Detalle de proyecto
-- `create_project` — Crear proyecto
-- `update_project` — Actualizar proyecto
-- `archive_project` — Archivar proyecto
-- `unarchive_project` — Desarchivar proyecto
-- `delete_project` — Eliminar proyecto
+- `list_projects` — List projects
+- `get_project` — Project details
+- `create_project` — Create project
+- `update_project` — Update project
+- `archive_project` — Archive project
+- `unarchive_project` — Unarchive project
+- `delete_project` — Delete project
 
 ### Issues (7)
 
-- `list_issues` — Lista issues con filtros
-- `get_issue` — Detalle de issue
-- `create_issue` — Crear issue
-- `update_issue` — Actualizar issue
-- `delete_issue` — Eliminar issue
-- `add_watcher` — Añadir watcher
-- `remove_watcher` — Eliminar watcher
+- `list_issues` — List issues with filters
+- `get_issue` — Issue details
+- `create_issue` — Create issue
+- `update_issue` — Update issue
+- `delete_issue` — Delete issue
+- `add_watcher` — Add watcher
+- `remove_watcher` — Remove watcher
 
 ### Users (8)
 
-- `list_users` — Lista usuarios
-- `get_user` — Detalle de usuario
-- `create_user` — Crear usuario
-- `update_user` — Actualizar usuario
-- `delete_user` — Eliminar usuario
-- `get_current_user` — Usuario actual
-- `get_my_account` — Mi cuenta
-- `update_my_account` — Actualizar mi cuenta
+- `list_users` — List users
+- `get_user` — User details
+- `create_user` — Create user
+- `update_user` — Update user
+- `delete_user` — Delete user
+- `get_current_user` — Current user
+- `get_my_account` — My account
+- `update_my_account` — Update my account
 
 ### Time Entries (5)
 
-- `list_time_entries` — Lista entradas de tiempo
-- `get_time_entry` — Detalle
-- `create_time_entry` — Crear
-- `update_time_entry` — Actualizar
-- `delete_time_entry` — Eliminar
+- `list_time_entries` — List time entries
+- `get_time_entry` — Details
+- `create_time_entry` — Create
+- `update_time_entry` — Update
+- `delete_time_entry` — Delete
 
 ### Groups (7)
 
@@ -138,25 +138,25 @@ Añadir al archivo de configuración MCP:
 
 - `update_journal`
 
-## Desarrollo
+## Development
 
 ```bash
-npm run dev # Ejecutar en modo desarrollo
-npm test # Ejecutar tests
-npm run build # Build de producción
+npm run dev # Run in development mode
+npm test    # Run tests
+npm run build # Production build
 ```
 
-## Arquitectura
+## Architecture
 
-El proyecto sigue Clean Architecture:
+The project follows Clean Architecture:
 
 ```
 src/
-├── domain/ # Tipos, interfaces, errores
-├── application/ # Servicios (interfaces) y use cases
+├── domain/         # Types, interfaces, errors
+├── application/    # Services (interfaces) and use cases
 └── infrastructure/ # Controllers (HTTP), MCP server, utils
 ```
 
-## Licencia
+## License
 
 MIT
