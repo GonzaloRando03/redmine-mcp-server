@@ -1,6 +1,6 @@
 {
   "name": "redmine-server-mcp",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "MCP server that exposes the Redmine API as tools for AI agents",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
