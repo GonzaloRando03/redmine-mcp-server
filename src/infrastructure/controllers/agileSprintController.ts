@@ -120,8 +120,9 @@ export class AgileSprintController
     if (include !== undefined)
       parts.push(`include=${encodeURIComponent(include)}`);
 
+    parts.push(`set_filter=1`);
     parts.push(`f[]=agile_sprint_id`);
-    parts.push(`op[agile_sprint_id]==`);
+    parts.push(`op[agile_sprint_id]=%3D`);
     parts.push(`v[agile_sprint_id][]=${encodeURIComponent(String(sprint_id))}`);
 
     const path = `/issues.json?${parts.join("&")}`;
