@@ -2345,6 +2345,168 @@ export const toolList = {
         required: ["id", "notes"],
       },
     },
+    // ── Agile Sprint (RedmineUP Agile plugin) ────────────────────────────────
+    {
+      name: "list_agile_sprints",
+      description:
+        "Lists all sprints of a project. Requires the RedmineUP Agile plugin.",
+      inputSchema: {
+        type: "object",
+        properties: {
+          project_id: {
+            type: ["string", "number"],
+            description: "Project ID (numeric) or identifier (string)",
+          },
+        },
+        required: ["project_id"],
+      },
+    },
+    {
+      name: "get_agile_sprint",
+      description:
+        "Gets details of a specific sprint. Requires the RedmineUP Agile plugin.",
+      inputSchema: {
+        type: "object",
+        properties: {
+          project_id: {
+            type: ["string", "number"],
+            description: "Project ID (numeric) or identifier (string)",
+          },
+          sprint_id: {
+            type: "number",
+            description: "Numeric sprint ID",
+          },
+        },
+        required: ["project_id", "sprint_id"],
+      },
+    },
+    {
+      name: "create_agile_sprint",
+      description:
+        "Creates a new sprint in a project. Requires the RedmineUP Agile plugin.",
+      inputSchema: {
+        type: "object",
+        properties: {
+          project_id: {
+            type: ["string", "number"],
+            description: "Project ID (numeric) or identifier (string)",
+          },
+          name: {
+            type: "string",
+            description: "Sprint name",
+          },
+          start_date: {
+            type: "string",
+            description: "Sprint start date (DD.MM.YYYY)",
+          },
+          end_date: {
+            type: "string",
+            description: "Sprint end date (DD.MM.YYYY)",
+          },
+          status: {
+            type: "string",
+            description: "Sprint status (e.g. open, closed)",
+          },
+          sharing: {
+            type: "string",
+            description: "Sprint sharing setting",
+          },
+        },
+        required: ["project_id", "name"],
+      },
+    },
+    {
+      name: "update_agile_sprint",
+      description:
+        "Updates an existing sprint. Requires the RedmineUP Agile plugin.",
+      inputSchema: {
+        type: "object",
+        properties: {
+          project_id: {
+            type: ["string", "number"],
+            description: "Project ID (numeric) or identifier (string)",
+          },
+          sprint_id: {
+            type: "number",
+            description: "Numeric sprint ID",
+          },
+          name: {
+            type: "string",
+            description: "New sprint name",
+          },
+          start_date: {
+            type: "string",
+            description: "Sprint start date (DD.MM.YYYY)",
+          },
+          end_date: {
+            type: "string",
+            description: "Sprint end date (DD.MM.YYYY)",
+          },
+          status: {
+            type: "string",
+            description: "Sprint status",
+          },
+          sharing: {
+            type: "string",
+            description: "Sprint sharing setting",
+          },
+        },
+        required: ["project_id", "sprint_id"],
+      },
+    },
+    {
+      name: "delete_agile_sprint",
+      description:
+        "Deletes a sprint from a project. Requires the RedmineUP Agile plugin.",
+      inputSchema: {
+        type: "object",
+        properties: {
+          project_id: {
+            type: ["string", "number"],
+            description: "Project ID (numeric) or identifier (string)",
+          },
+          sprint_id: {
+            type: "number",
+            description: "Numeric sprint ID",
+          },
+        },
+        required: ["project_id", "sprint_id"],
+      },
+    },
+    {
+      name: "get_issue_agile_data",
+      description:
+        "Gets the agile fields (sprint, story points, position) of an issue. Requires the RedmineUP Agile plugin.",
+      inputSchema: {
+        type: "object",
+        properties: {
+          issue_id: {
+            type: "number",
+            description: "Numeric issue ID",
+          },
+        },
+        required: ["issue_id"],
+      },
+    },
+    {
+      name: "assign_issue_to_sprint",
+      description:
+        "Assigns an issue to a sprint (or removes it by passing null). Requires the RedmineUP Agile plugin.",
+      inputSchema: {
+        type: "object",
+        properties: {
+          issue_id: {
+            type: "number",
+            description: "Numeric issue ID",
+          },
+          agile_sprint_id: {
+            type: ["number", "null"],
+            description: "Sprint ID to assign, or null to remove from sprint",
+          },
+        },
+        required: ["issue_id", "agile_sprint_id"],
+      },
+    },
   ] as Array<{
     name: string;
     description: string;

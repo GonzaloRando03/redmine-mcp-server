@@ -17,6 +17,7 @@ import { handleEnumeration } from "@/infrastructure/mcp/handlers/enumerationHand
 import { handleCatalog } from "@/infrastructure/mcp/handlers/catalogHandler";
 import { handleRole } from "@/infrastructure/mcp/handlers/roleHandler";
 import { handleJournal } from "@/infrastructure/mcp/handlers/journalHandler";
+import { handleAgileSprint } from "@/infrastructure/mcp/handlers/agileSprintHandler";
 
 type McpToolResponse =
   | { content: { type: "text"; text: string }[] }
@@ -49,6 +50,8 @@ export function createToolRouter(
     (n: string, a: Record<string, unknown>) => handleCatalog(n, a, container),
     (n: string, a: Record<string, unknown>) => handleRole(n, a, container),
     (n: string, a: Record<string, unknown>) => handleJournal(n, a, container),
+    (n: string, a: Record<string, unknown>) =>
+      handleAgileSprint(n, a, container),
   ];
 
   return async (name, args) => {

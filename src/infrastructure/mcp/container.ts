@@ -22,6 +22,16 @@ import { CustomFieldController } from "@/infrastructure/controllers/customFieldC
 import { QueryController } from "@/infrastructure/controllers/queryController";
 import { RoleController } from "@/infrastructure/controllers/roleController";
 import { JournalController } from "@/infrastructure/controllers/journalController";
+import { AgileSprintController } from "@/infrastructure/controllers/agileSprintController";
+
+// Use cases — Agile Sprint
+import { ListAgileSprints } from "@/application/use-cases/agile-sprint/listAgileSprints";
+import { GetAgileSprint } from "@/application/use-cases/agile-sprint/getAgileSprint";
+import { CreateAgileSprint } from "@/application/use-cases/agile-sprint/createAgileSprint";
+import { UpdateAgileSprint } from "@/application/use-cases/agile-sprint/updateAgileSprint";
+import { DeleteAgileSprint } from "@/application/use-cases/agile-sprint/deleteAgileSprint";
+import { GetIssueAgileData } from "@/application/use-cases/agile-sprint/getIssueAgileData";
+import { AssignIssueToSprint } from "@/application/use-cases/agile-sprint/assignIssueToSprint";
 
 // Use cases — Project
 import { ListProjects } from "@/application/use-cases/project/listProjects";
@@ -249,6 +259,14 @@ export interface AppContainer {
   getRole: GetRole;
   // Journal
   updateJournal: UpdateJournal;
+  // Agile Sprint
+  listAgileSprints: ListAgileSprints;
+  getAgileSprint: GetAgileSprint;
+  createAgileSprint: CreateAgileSprint;
+  updateAgileSprint: UpdateAgileSprint;
+  deleteAgileSprint: DeleteAgileSprint;
+  getIssueAgileData: GetIssueAgileData;
+  assignIssueToSprint: AssignIssueToSprint;
 }
 
 export function createContainer(config: RedmineApiConfig): AppContainer {
@@ -274,6 +292,7 @@ export function createContainer(config: RedmineApiConfig): AppContainer {
   const queryCtrl = new QueryController(config);
   const roleCtrl = new RoleController(config);
   const journalCtrl = new JournalController(config);
+  const agileSprintCtrl = new AgileSprintController(config);
 
   return {
     // Project
@@ -378,5 +397,13 @@ export function createContainer(config: RedmineApiConfig): AppContainer {
     getRole: new GetRole(roleCtrl),
     // Journal
     updateJournal: new UpdateJournal(journalCtrl),
+    // Agile Sprint
+    listAgileSprints: new ListAgileSprints(agileSprintCtrl),
+    getAgileSprint: new GetAgileSprint(agileSprintCtrl),
+    createAgileSprint: new CreateAgileSprint(agileSprintCtrl),
+    updateAgileSprint: new UpdateAgileSprint(agileSprintCtrl),
+    deleteAgileSprint: new DeleteAgileSprint(agileSprintCtrl),
+    getIssueAgileData: new GetIssueAgileData(agileSprintCtrl),
+    assignIssueToSprint: new AssignIssueToSprint(agileSprintCtrl),
   };
 }

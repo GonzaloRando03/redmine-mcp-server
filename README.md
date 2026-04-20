@@ -138,6 +138,18 @@ Add to your MCP configuration file:
 
 - `update_journal`
 
+### Agile Sprints — RedmineUP Agile plugin (7)
+
+> Requires the [RedmineUP Agile plugin](https://www.redmineup.com/pages/plugins/agile) installed in your Redmine instance.
+
+- `list_agile_sprints` — List sprints of a project
+- `get_agile_sprint` — Sprint details
+- `create_agile_sprint` — Create sprint
+- `update_agile_sprint` — Update sprint
+- `delete_agile_sprint` — Delete sprint
+- `get_issue_agile_data` — Get sprint, story points and position of an issue
+- `assign_issue_to_sprint` — Assign (or remove) an issue to a sprint
+
 ## Development
 
 ```bash
