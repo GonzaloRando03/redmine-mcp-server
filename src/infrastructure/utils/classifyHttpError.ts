@@ -14,7 +14,7 @@ export function classifyHttpError(status: number): {
       return {
         type: RedmineErrorType.AUTHORIZATION_FAILED,
         solution:
-          "Insufficient permissions or REST API is disabled in Redmine settings.",
+          "Insufficient permissions. Possible causes: REST API is disabled in Redmine settings, the user lacks access to this resource, or the RedmineUP Agile plugin does not expose this endpoint to the current user role.",
       };
     case status === 404:
       return {

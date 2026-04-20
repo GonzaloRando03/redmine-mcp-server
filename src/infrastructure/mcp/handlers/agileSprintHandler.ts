@@ -5,6 +5,7 @@ import { CreateAgileSprintParams } from "@/domain/agile-sprint/createAgileSprint
 import { UpdateAgileSprintParams } from "@/domain/agile-sprint/updateAgileSprintParams";
 import { GetIssueAgileDataParams } from "@/domain/agile-sprint/getIssueAgileDataParams";
 import { AssignIssueToSprintParams } from "@/domain/agile-sprint/assignIssueToSprintParams";
+import { ListIssuesBySprintParams } from "@/domain/agile-sprint/listIssuesBySprintParams";
 
 export async function handleAgileSprint(
   name: string,
@@ -18,6 +19,7 @@ export async function handleAgileSprint(
     | "deleteAgileSprint"
     | "getIssueAgileData"
     | "assignIssueToSprint"
+    | "listIssuesBySprint"
   >,
 ): Promise<unknown> {
   switch (name) {
@@ -46,6 +48,10 @@ export async function handleAgileSprint(
     case "assign_issue_to_sprint":
       return c.assignIssueToSprint.handle(
         args as unknown as AssignIssueToSprintParams,
+      );
+    case "list_issues_by_sprint":
+      return c.listIssuesBySprint.handle(
+        args as unknown as ListIssuesBySprintParams,
       );
     default:
       return null;

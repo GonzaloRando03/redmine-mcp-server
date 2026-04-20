@@ -5,9 +5,11 @@ import { GetAgileSprintParams } from "@/domain/agile-sprint/getAgileSprintParams
 import { GetIssueAgileDataParams } from "@/domain/agile-sprint/getIssueAgileDataParams";
 import { ListAgileSprintsParams } from "@/domain/agile-sprint/listAgileSprintsParams";
 import { ListAgileSprintsResult } from "@/domain/agile-sprint/listAgileSprintsResult";
+import { ListIssuesBySprintParams } from "@/domain/agile-sprint/listIssuesBySprintParams";
 import { RedmineAgileData } from "@/domain/agile-sprint/redmineAgileData";
 import { RedmineAgileSprint } from "@/domain/agile-sprint/redmineAgileSprint";
 import { UpdateAgileSprintParams } from "@/domain/agile-sprint/updateAgileSprintParams";
+import { ListIssuesResult } from "@/domain/issue/listIssuesResult";
 import { RedmineApiBaseController } from "@/infrastructure/controllers/redmineApiBaseController";
 
 export class AgileSprintController
@@ -97,6 +99,18 @@ export class AgileSprintController
         },
       },
       "Assign issue to sprint",
+    );
+  }
+
+  async listIssuesBySprint(
+    params: ListIssuesBySprintParams,
+  ): Promise<ListIssuesResult> {
+    const { sprint_id, ...rest } = params;
+    return this.request<ListIssuesResult>(
+      "GET",
+      "/issues.json",
+      { ...rest, agile_sprint_id: sprint_id } as Record<string, unknown>,
+      "List issues by sprint",
     );
   }
 }

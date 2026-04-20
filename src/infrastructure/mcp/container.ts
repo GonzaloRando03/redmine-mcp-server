@@ -32,6 +32,7 @@ import { UpdateAgileSprint } from "@/application/use-cases/agile-sprint/updateAg
 import { DeleteAgileSprint } from "@/application/use-cases/agile-sprint/deleteAgileSprint";
 import { GetIssueAgileData } from "@/application/use-cases/agile-sprint/getIssueAgileData";
 import { AssignIssueToSprint } from "@/application/use-cases/agile-sprint/assignIssueToSprint";
+import { ListIssuesBySprint } from "@/application/use-cases/agile-sprint/listIssuesBySprint";
 
 // Use cases — Project
 import { ListProjects } from "@/application/use-cases/project/listProjects";
@@ -267,6 +268,7 @@ export interface AppContainer {
   deleteAgileSprint: DeleteAgileSprint;
   getIssueAgileData: GetIssueAgileData;
   assignIssueToSprint: AssignIssueToSprint;
+  listIssuesBySprint: ListIssuesBySprint;
 }
 
 export function createContainer(config: RedmineApiConfig): AppContainer {
@@ -405,5 +407,6 @@ export function createContainer(config: RedmineApiConfig): AppContainer {
     deleteAgileSprint: new DeleteAgileSprint(agileSprintCtrl),
     getIssueAgileData: new GetIssueAgileData(agileSprintCtrl),
     assignIssueToSprint: new AssignIssueToSprint(agileSprintCtrl),
+    listIssuesBySprint: new ListIssuesBySprint(agileSprintCtrl),
   };
 }

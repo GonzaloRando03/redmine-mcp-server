@@ -2507,6 +2507,49 @@ export const toolList = {
         required: ["issue_id", "agile_sprint_id"],
       },
     },
+    {
+      name: "list_issues_by_sprint",
+      description:
+        "Lists all issues assigned to a specific sprint. Uses the RedmineUP Agile plugin filter. More efficient than list_issues when you need to filter by sprint.",
+      inputSchema: {
+        type: "object",
+        properties: {
+          sprint_id: {
+            type: "number",
+            description: "Numeric sprint ID (required)",
+          },
+          project_id: {
+            type: ["string", "number"],
+            description:
+              "Filter by project ID or identifier (recommended to narrow results)",
+          },
+          status_id: {
+            type: "string",
+            description:
+              "Filter by status. Values: open, closed, * (all), or numeric ID",
+          },
+          limit: {
+            type: "number",
+            description: "Number of items per page (default 25, max 100)",
+          },
+          offset: {
+            type: "number",
+            description: "Number of items to skip (default 0)",
+          },
+          sort: {
+            type: "string",
+            description:
+              "Sort field and direction. Examples: status:asc, priority:desc",
+          },
+          include: {
+            type: "string",
+            description:
+              "Comma-separated: attachments, relations, journals, watchers, children",
+          },
+        },
+        required: ["sprint_id"],
+      },
+    },
   ] as Array<{
     name: string;
     description: string;

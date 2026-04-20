@@ -4,9 +4,11 @@ import { GetAgileSprintParams } from "@/domain/agile-sprint/getAgileSprintParams
 import { GetIssueAgileDataParams } from "@/domain/agile-sprint/getIssueAgileDataParams";
 import { ListAgileSprintsParams } from "@/domain/agile-sprint/listAgileSprintsParams";
 import { ListAgileSprintsResult } from "@/domain/agile-sprint/listAgileSprintsResult";
+import { ListIssuesBySprintParams } from "@/domain/agile-sprint/listIssuesBySprintParams";
 import { RedmineAgileData } from "@/domain/agile-sprint/redmineAgileData";
 import { RedmineAgileSprint } from "@/domain/agile-sprint/redmineAgileSprint";
 import { UpdateAgileSprintParams } from "@/domain/agile-sprint/updateAgileSprintParams";
+import { ListIssuesResult } from "@/domain/issue/listIssuesResult";
 
 export interface AgileSprintService {
   listAgileSprints(
@@ -23,4 +25,7 @@ export interface AgileSprintService {
   }): Promise<void>;
   getIssueAgileData(params: GetIssueAgileDataParams): Promise<RedmineAgileData>;
   assignIssueToSprint(params: AssignIssueToSprintParams): Promise<void>;
+  listIssuesBySprint(
+    params: ListIssuesBySprintParams,
+  ): Promise<ListIssuesResult>;
 }
