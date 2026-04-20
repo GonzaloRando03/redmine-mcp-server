@@ -105,11 +105,30 @@ export class AgileSprintController
   async listIssuesBySprint(
     params: ListIssuesBySprintParams,
   ): Promise<ListIssuesResult> {
-    const { sprint_id, ...rest } = params;
+    const { sprint_id, project_id, status_id, limit, offset, sort, include } =
+      params;
+
+    // Redmine advanced filter syntax required for plugin fields like agile_sprint_id
+    const parts: string[] = [];
+    if (project_id !== undefined)
+      parts.push(`project_id=${encodeURIComponent(String(project_id))}`);
+    if (status_id !== undefined)
+      parts.push(`status_id=${encodeURIComponent(status_id)}`);
+    if (limit !== undefined) parts.push(`limit=${limit}`);
+    if (offset !== undefined) parts.push(`offset=${offset}`);
+    if (sort !== undefined) parts.push(`sort=${encodeURIComponent(sort)}`);
+    if (include !== undefined)
+      parts.push(`include=${encodeURIComponent(include)}`);
+
+    parts.push(`f[]=agile_sprint_id`);
+    parts.push(`op[agile_sprint_id]==`);
+    parts.push(`v[agile_sprint_id][]=${encodeURIComponent(String(sprint_id))}`);
+
+    const path = `/issues.json?${parts.join("&")}`;
     return this.request<ListIssuesResult>(
       "GET",
-      "/issues.json",
-      { ...rest, agile_sprint_id: sprint_id } as Record<string, unknown>,
+      path,
+      undefined,
       "List issues by sprint",
     );
   }
